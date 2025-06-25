@@ -1,6 +1,6 @@
 """
 This file contains mostly original code, with partial third-party snippets:
-1. Classes 'SelfAttention', 'MultiHeadSelfAttention', 'TransformerEncoderLayer' are modified from PyTorch (BSD 3-Clause License):
+1. Classes 'SelfAttention', 'MultiHeadSelfAttention' and 'TransformerEncoderLayer' are modified from PyTorch (BSD 3-Clause License):
    - Source: https://github.com/pytorch
    - Copyright: Facebook, Inc. and its affiliates.
 2. All other code is original and owned by Yiran Zhou.
