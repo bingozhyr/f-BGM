@@ -50,7 +50,7 @@ def performBGCPrediction(file_contig_list,file_pfam_json,path_esm_json,path_geno
         dict_pep2pred_score.update(dict(zip(l_pep_id,l_pred_score)))
         l_all_pred_score+=list(l_pred_score)
     if pred_score_threshold is None:
-        pred_score_threshold=np.quantile(l_all_pred_score,(1-pred_score_top_ratio))
+        pred_score_threshold=np.quantile(l_all_pred_score,(1-pred_score_top_ratio)) if len(l_all_pred_score)>0 else None
 
     a=[]
     l_BGC_id=[]
