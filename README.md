@@ -27,13 +27,13 @@ This toolkit was developed for Linux systems due to dependencies on some UNIX-sp
 ```
 ~/user/path# cd f-BGM
 ~/user/path/f-BGM# ls
-LICENSE  README.md  demo  environment.yml  f-bgm.py  img  src
+LICENSE  README.md  demo  docs  environment.yml  f-bgm.py  img  src
 ```
 ### Download model parameters and external files
 This repository only contains the source code of f-BGM, the model parameters and external files required for Pfam domain identification are seperately deposited as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB) in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1). The users should (1) download and move them into the project directory and (2) unzip them. The complete structure of project directory is as follow:
 ```
 ~/user/path/f-BGM# ls
-LICENSE  README.md  demo  environment.yml  external_file  f-bgm.py  img  model  src
+LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  model  src
 ```
 ### Environment configuration
 We strongly recommend the users to configure the running environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for environment management.
@@ -73,7 +73,7 @@ Directly create a virtual environment namd 'f-BGM' according to the pre-defined 
 ```
 f-bgm.py -s SEQUENCE [-a ANNOTATION] -p PATH --pred_score_top_ratio PRED_SCORE_TOP_RATIO
 ```
-Three parameters '-s', '-p' and '--pred_score_top_ratio' are necessarily required. The parameter '-s' indicates the genome sequence file to be analyzed, the supported formats include (1) genbank (\*.gbk, \*.gb and \*gbff) and (2) fasta (\*.fa, \*.fasta and \*.fa). If a genbank file is provided, then it will undergo strict validity check, please confirm its consistency with xxx in feature types and data fields. If the file is of fasta format (recommended), then a genomic annotation file in gff3 format (\*.gff and \*.gff3) can be optionally provided through the parameter '-a'. On this occasion validity check will be also performed, please confirm its format consisitency with xxx. If the fasta file is provided in absence of specified '-a', then the toolkit will automatically invoke the AUGUSTUS tool for *de novo* generation of genome annotations.
+Three parameters '-s', '-p' and '--pred_score_top_ratio' are required to be specified. The parameter '-s' indicates the genome sequence file to be analyzed, the supported formats include (1) genbank (\*.gbk, \*.gb and \*gbff) and (2) fasta (\*.fa, \*.fasta and \*.fa). If a genbank file is provided, then it will undergo strict validity check, please confirm its consistency with xxx in feature types and data fields. If the file is of fasta format (recommended), then a genomic annotation file in gff3 format (\*.gff and \*.gff3) can be optionally provided through the parameter '-a'. On this occasion validity check will be also performed, please confirm its format consisitency with xxx. If the fasta file is provided in absence of specified '-a', then the toolkit will automatically invoke the AUGUSTUS tool for *de novo* generation of genome annotations.
 
 '-p' is the working path for the genome mining task, all the intermediate and final results will be generated in it.
 
@@ -98,9 +98,9 @@ For each genome mining task, a file ['putative_BGC.csv'](demo/fbgm_working_path/
 ### Detailed information of putative BGC-containing contigs
 For each putative BGC-containing contig, 2 interactive html images will be generated:
 
-(1) ['contig_id.confidence_score.html'](demo/fbgm_working_path/prediction_result/1750899275/contig_detail/ML978066.confidence_score.html), which illustrates ORF-level confidence scores of BGC membership.
+(1) ['contig_id.confidence_score.html'](https://bingozhyr.github.io/f-BGM/ML978066.confidence_score.html), which illustrates ORF-level confidence scores of BGC membership.
 
-(2) ['contig_id.putative_BGC.html'](demo/fbgm_working_path/prediction_result/1750899275/contig_detail/ML978066.putative_BGC.html), which illustrates putative BGCs' genomic spans and Pfam domain components.
+(2) ['contig_id.putative_BGC.html'](https://bingozhyr.github.io/f-BGM/ML978066.putative_BGC.html), which illustrates putative BGCs' genomic spans and Pfam domain components.
 ### Detailed information of putative BGCs
 For each putative BGC, 5 files will be generated:
 
@@ -108,8 +108,8 @@ For each putative BGC, 5 files will be generated:
 
 (2) ['putative_BGC_id.pfam.json'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.pfam.json), which records Pfam domain components of each member protein in json format.
 
-(3) ['putative_BGC_id.attention_intra_pep_pfam_level.html'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.attention_intra_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within single protein, as revealed by single-protein domain-level TFE of f-DLC.
+(3) ['putative_BGC_id.attention_intra_pep_pfam_level.html'](https://bingozhyr.github.io/f-BGM/BGC_2.attention_intra_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within single protein, as revealed by single-protein domain-level TFE of f-DLC.
 
-(4) ['putative_BGC_id.attention_multi_pep_pfam_level.html'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.attention_multi_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within multi-proteins, as revealed by multi-protein domain-level TFE of f-DLC.
+(4) ['putative_BGC_id.attention_multi_pep_pfam_level.html'](https://bingozhyr.github.io/f-BGM/BGC_2.attention_multi_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within multi-proteins, as revealed by multi-protein domain-level TFE of f-DLC.
 
-(5) ['putative_BGC_id.attention_pep_level.html'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.attention_pep_level.html), which interactively illustrates inter-protein (inter-ORF) attention flows, as revealed by protein-level TFE of f-BGM SRM.
+(5) ['putative_BGC_id.attention_pep_level.html'](https://bingozhyr.github.io/f-BGM/BGC_2.attention_pep_level.html), which interactively illustrates inter-protein (inter-ORF) attention flows, as revealed by protein-level TFE of f-BGM SRM.
