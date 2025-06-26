@@ -10,7 +10,7 @@ Benifit by recent data accumulation of fungal biosynthetic gene clusters (BGC), 
 ## Model architecture
 ### The f-DLC architecture
 ![f-DLC](img/f-DLC.png)
-f-DLC receives ≤26 consecutive ORFs as inputs. First, f-DLC transforms the ORFs into linearized token sequences with a hierarchical domain-to-protein structure, which consists of Pfam domain tokens prefixed with [PRE] token for each ORF. Then the tokens are translated into 72-D embeddings consisting of three components: (1) 64-D domain-specific learnable embeddings; (2) 4-D embeddings encoding domains’ relative positioning information in protein; (3) 4-D embeddings encoding domains’ enrichment information in BGC (only enabled during downstream establishment of f-BGM). Next, the embeddings are passed through four sequential TFEs with different attention masks to achieve layer-wise information interaction. Specifically, the first and second TFE mainly focus on inter-domain information interaction within single protein and multiple proteins, respectively. Meanwhile the attention connections from domain tokens to corresponding prefix tokens are enabled for real-time domain-to-protein information aggregation. The third TFE only retains the domain-to-protein attention mechanism to fully summarize the upstream extracted features and thereby generate meaningful protein-level embeddings for downstream use. The fourth TFE reversely calculates on the attention connections from prefix tokens to domain tokens to satisfy domain-level BERT-style pretraining, where 15% of the input domain tokens are masked and the model is guided to recover these tokens by a downstream multi-classification header.
+f-DLC receives ≤26 consecutive ORFs as inputs. First, f-DLC transforms the ORFs into linearized token sequences with a hierarchical domain-to-protein structure, which consists of Pfam domain tokens prefixed with [PRE] token for each ORF. Then the tokens are translated into 72-D embeddings consisting of three components: (1) 64-D domain-specific learnable embeddings; (2) 4-D embeddings encoding domains’ relative positioning information in protein; (3) 4-D embeddings encoding domains’ enrichment information in BGC (only enabled during downstream establishment of f-BGM). Next, the embeddings are passed through four sequential transformer encoders (TFE) with different attention masks to achieve layer-wise information interaction. Specifically, the first and second TFE mainly focus on inter-domain information interaction within single protein and multiple proteins, respectively. Meanwhile the attention connections from domain tokens to corresponding prefix tokens are enabled for real-time domain-to-protein information aggregation. The third TFE only retains the domain-to-protein attention mechanism to fully summarize the upstream extracted features and thereby generate meaningful protein-level embeddings for downstream use. The fourth TFE reversely calculates on the attention connections from prefix tokens to domain tokens to satisfy domain-level BERT-style pretraining, where 15% of the input domain tokens are masked and the model is guided to recover these tokens by a downstream multi-classification header.
 
 ### The f-BGM architecture
 ![f-BGM](img/f-BGM.png)
@@ -27,13 +27,13 @@ This toolkit was developed for Linux systems due to dependencies on some UNIX-sp
 ```
 ~/user/path# cd f-BGM
 ~/user/path/f-BGM# ls
-LICENSE  README.md  environment.yml  f-bgm.py  src
+LICENSE  README.md  demo  environment.yml  f-bgm.py  img  src
 ```
 ### Download model parameters and external files
 This repository only contains the source code of f-BGM, the model parameters and external files required for Pfam domain identification are seperately deposited as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB) in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1). The users should (1) download and move them into the project directory and (2) unzip them. The complete structure of project directory is as follow:
 ```
 ~/user/path/f-BGM# ls
-LICENSE  README.md  environment.yml  external_file  f-bgm.py  model  src
+LICENSE  README.md  demo  environment.yml  external_file  f-bgm.py  img  model  src
 ```
 ### Environment configuration
 We strongly recommend the users to configure the running environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for environment management.
@@ -63,24 +63,53 @@ Directly create a virtual environment namd 'f-BGM' according to the pre-defined 
 (f-BGM) ~/user/path# pip install fair-esm==2.0.0 pygustus==0.8.3
 ```
 ## Perform fungal genome mining using f-BGM
+### Basic usage
 (1) Switch to the f-BGM environment:
 ```
 (base) ~/user/path# conda activate f-BGM
 (f-BGM) ~/user/path#
 ```
-(2) Formally use f-BGM. The usage of f-BGM command is:
+(2) Formally use f-BGM. The basic usage of f-BGM command is:
 ```
-f-bgm.py -s SEQUENCE [-a ANNOTATION] -p PATH [--pred_score_threshold PRED_SCORE_THRESHOLD] [--pred_score_top_ratio PRED_SCORE_TOP_RATIO] [--pred_score_threshold_core_enzyme PRED_SCORE_THRESHOLD_CORE_ENZYME] [--n_submodel N_SUBMODEL] [--min_n_pep_contig MIN_N_PEP_CONTIG] [--min_n_pep_bgc MIN_N_PEP_BGC] [--max_n_pep_bgc MAX_N_PEP_BGC] [--max_interval_n_pep_bgc_merging MAX_INTERVAL_N_PEP_BGC_MERGING] [--flanking_dna_sequence_length FLANKING_DNA_SEQUENCE_LENGTH] [--device_type {cpu,gpu}] [--augustus_species AUGUSTUS_SPECIES] [--n_thread_augustus N_THREAD_AUGUSTUS] [--e_threshold_hmmer E_THRESHOLD_HMMER] [--n_thread_hmmer N_THREAD_HMMER] [-h] [-v]
+f-bgm.py -s SEQUENCE [-a ANNOTATION] -p PATH --pred_score_top_ratio PRED_SCORE_TOP_RATIO
 ```
-There are two neccessary parameters '-s' and '-p'. The parameter '-s' indicates the genome sequence file to be analyzed, the supported formats include (1) genbank (\*.gbk, \*.gb and \*gbff) and (2) fasta (\*.fa, \*.fasta and \*.fa). If a genbank file provided, it will undergo strict validity check, please confirm its consistency with xxx in feature types and data fields. If the file is of fasta format (recommended), then a genomic annotation file in gff3 format (\*.gff and \*.gff3) can be optionally provided through the parameter '-a'. Validity check will be also performed if '-a' is specified, please confirm its format consisitency with xxx. If the fasta file is provided in absence of specified '-a', then the toolkit will automatically invoke the AUGUSTUS tool for *de novo* generation of genome annotations.
+Three parameters '-s', '-p' and '--pred_score_top_ratio' are necessarily required. The parameter '-s' indicates the genome sequence file to be analyzed, the supported formats include (1) genbank (\*.gbk, \*.gb and \*gbff) and (2) fasta (\*.fa, \*.fasta and \*.fa). If a genbank file is provided, then it will undergo strict validity check, please confirm its consistency with xxx in feature types and data fields. If the file is of fasta format (recommended), then a genomic annotation file in gff3 format (\*.gff and \*.gff3) can be optionally provided through the parameter '-a'. On this occasion validity check will be also performed, please confirm its format consisitency with xxx. If the fasta file is provided in absence of specified '-a', then the toolkit will automatically invoke the AUGUSTUS tool for *de novo* generation of genome annotations.
 
-'-p' is the working path for the genome mining task, all the intermediate and final results will be stored in it.
+'-p' is the working path for the genome mining task, all the intermediate and final results will be generated in it.
 
-For example, if a genome sequence file in fasta format and a valid genome annotation file in gff3 format are both present, then the users can use the following commond to perform analyses:
+'--pred_score_top_ratio' is the top ratio of highly scored ORFs considered for BGC organization. 
+
+For example, if a genome sequence file in fasta format and a valid genome annotation file in gff3 format are both present, then the users can use the following commond to organize the top 5% of highly scored ORFs into putative BGCs:
 ```
-(f-BGM) ~/user/path# python ~/user/path/f-BGM/f-bgm.py -s /user/path/genome/sequence/file.fasta -a /user/path/genome/annotation/file.gff3 -p /user/path/genome/mining/task
+(f-BGM) ~/user/path# python ~/user/path/f-BGM/f-bgm.py -s /user/path/genome/sequence/file.fasta -a /user/path/genome/annotation/file.gff3 -p /user/path/genome/mining/task --pred_score_top_ratio 0.05
 ```
-If the users only have a fasta file, then the parameter '-a' can be ignored under the help of AUGUSTUS:
+If the users only have a fasta file, then the abscent '-a' is also feasible with the assistance of AUGUSTUS:
 ```
-(f-BGM) ~/user/path# python ~/user/path/f-BGM/f-bgm.py -s /user/path/genome/sequence/file.fasta -p /user/path/genome/mining/task
+(f-BGM) ~/user/path# python ~/user/path/f-BGM/f-bgm.py -s /user/path/genome/sequence/file.fasta -p /user/path/genome/mining/task --pred_score_top_ratio 0.05
 ```
+### Other parameters
+See the help messages to understand the usages of other parameters:
+```
+(f-BGM) ~/user/path# python ~/user/path/f-BGM/f-bgm.py -h
+```
+## Deciphering genome mining results of f-BGM
+### Basic information of putative BGCs
+For each genome mining task, a file ['putative_BGC.csv'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC.csv) will be first generated, where the basic information of f-BGM-putative BGCs including genomic locus, member ORF number, putative core enzymes, member protein domains and confidence score are recorded.
+### Detailed information of putative BGC-containing contigs
+For each putative BGC-containing contig, 2 interactive html images will be generated:
+
+(1) ['contig_id.confidence_score.html'](demo/fbgm_working_path/prediction_result/1750899275/contig_detail/ML978066.confidence_score.html), which illustrates ORF-level confidence scores of BGC membership.
+
+(2) ['contig_id.putative_BGC.html'](demo/fbgm_working_path/prediction_result/1750899275/contig_detail/ML978066.putative_BGC.html), which illustrates putative BGCs' genomic spans and Pfam domain components.
+### Detailed information of putative BGCs
+For each putative BGC, 5 files will be generated:
+
+(1) ['putative_BGC_id.dna.fasta'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.dna.fasta), which records corresponding DNA sequences in fasta format.
+
+(2) ['putative_BGC_id.pfam.json'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.pfam.json), which records Pfam domain components of each member protein in json format.
+
+(3) ['putative_BGC_id.attention_intra_pep_pfam_level.html'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.attention_intra_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within single protein, as revealed by single-protein domain-level TFE of f-DLC.
+
+(4) ['putative_BGC_id.attention_multi_pep_pfam_level.html'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.attention_multi_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within multi-proteins, as revealed by multi-protein domain-level TFE of f-DLC.
+
+(5) ['putative_BGC_id.attention_pep_level.html'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.attention_pep_level.html), which interactively illustrates inter-protein (inter-ORF) attention flows, as revealed by protein-level TFE of f-BGM SRM.
