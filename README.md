@@ -30,13 +30,13 @@ This toolkit was developed for Linux systems due to dependencies on some UNIX-sp
 LICENSE  README.md  demo  docs  environment.yml  f-bgm.py  img  src
 ```
 ### Download model parameters and external files
-This repository only contains the source code of f-BGM, the model parameters and external files required for Pfam domain identification are seperately deposited as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB) in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1). The users should (1) download and move them into the project directory and (2) unzip them. The complete structure of project directory is as follow:
+This repository only contains the python source code. The (1) trained model parameters and (2) external files for Pfam domain identification are seperately deposited in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1) as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB), respectively. The users should (1) download and move them into the project directory and (2) unzip them. The complete project is as follow:
 ```
 ~/user/path/f-BGM# ls
 LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  model  src
 ```
 ### Environment configuration
-We strongly recommend the users to configure the running environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for environment management.
+We strongly recommend the users to configure f-BGM runtime environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for dependency conflict solvement and multiple environment management.
 #### Option 1: automatic configuration (recommended):
 Directly create a virtual environment namd 'f-BGM' according to the pre-defined configuration file 'environment.yml':
 ```
@@ -44,7 +44,7 @@ Directly create a virtual environment namd 'f-BGM' according to the pre-defined 
 ```
 #### Option 2: step-by-step manual configuration:
 #### 1. Preparation
-(1) Create a virtual environment specifically for f-BGM running, here the environment is named as 'f-BGM' for demonstration:
+(1) Create a virtual environment specifically for f-BGM execution, here the environment is named as 'f-BGM' for demonstration:
 ```
 (base) ~/user/path# conda create -n f-BGM
 ```
@@ -53,7 +53,7 @@ Directly create a virtual environment namd 'f-BGM' according to the pre-defined 
 (base) ~/user/path# conda activate f-BGM
 (f-BGM) ~/user/path#
 ```
-#### 2. Formal configuration of the f-BGM environment (installation of python and dependent packages)
+#### 2. Formal configuration of f-BGM runtime environment (installation of python and dependent packages)
 (1) Install the packages deposited in Conda channels:
 ```
 (f-BGM) ~/user/path# conda install python==3.10.13 pandas==1.3.5 biopython==1.82 pyhmmer==0.8.1 augustus==3.5.0 plotly==5.18.0 bokeh==3.3.4 pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 pandas==1.3.5 biopython==1.82 -c conda-forge -c bioconda -c pytorch -c nvidia
@@ -73,7 +73,7 @@ Directly create a virtual environment namd 'f-BGM' according to the pre-defined 
 ```
 f-bgm.py -s SEQUENCE [-a ANNOTATION] -p PATH --pred_score_top_ratio PRED_SCORE_TOP_RATIO
 ```
-Three parameters '-s', '-p' and '--pred_score_top_ratio' are required to be specified. The parameter '-s' indicates the genome sequence file to be analyzed, the supported formats include (1) genbank (\*.gbk, \*.gb and \*gbff) and (2) fasta (\*.fa, \*.fasta and \*.fa). If a genbank file is provided, then it will undergo strict validity check, please confirm its consistency with [the demo file](demo/demo.gbff) in feature types and data fields. If the file is of fasta format (recommended), then a genomic annotation file in gff3 format (\*.gff and \*.gff3) can be optionally provided through the parameter '-a'. On this occasion validity check will be also performed, please confirm its format consisitency with [the demo file](demo/demo.gff3). If the fasta file is provided without specified '-a', then the toolkit will automatically invoke the AUGUSTUS tool for *de novo* generation of genome annotations.
+Three parameters '-s', '-p' and '--pred_score_top_ratio' are required to be specified. The parameter '-s' indicates the genome sequence file to be analyzed, the supported formats include (1) genbank (\*.gbk, \*.gb and \*gbff) and (2) fasta (\*.fa, \*.fasta and \*.fa). If a genbank file is provided, then it will undergo strict validity check, please confirm its consistency with [the demo file](demo/demo.gbff) in data fields. If the file is of fasta format (recommended), then a genomic annotation file in gff3 format (\*.gff and \*.gff3) can be optionally provided through the parameter '-a'. On this occasion validity check will be also performed, please confirm its format consisitency with [the demo file](demo/demo.gff3). If the fasta file is provided without specified '-a', then the toolkit will automatically invoke the AUGUSTUS tool for *de novo* generation of genome annotations.
 
 '-p' is the working path for the genome mining task, all the intermediate and final results will be generated in it.
 
