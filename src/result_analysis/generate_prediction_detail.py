@@ -125,11 +125,11 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
     ).to(device)
 
     print("The following files will be generated for the putative BGC(s) and saved to {:s}:".format(opath_prediction_result_BGC_detail))
-    print("1. xxx.dna.fasta ('xxx' is BGC id), which records DNA sequence(s) of corresponding BGC(s).")
-    print("2. xxx.pfam.json ('xxx' is BGC id), which records Pfam domain component(s) of corresponding BGC(s).")
-    print("3. xxx.attention_single_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within single peptide.")
-    print("4. xxx.attention_multi_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within multi-peptides.")
-    print("5. xxx.attention_pep_level.html ('xxx' is BGC id), which plots inter-peptide attention flow(s).")
+    print("1. xxx.dna.fasta ('xxx' is BGC id), which records DNA sequence of corresponding putative BGC.")
+    print("2. xxx.pfam.json ('xxx' is BGC id), which records Pfam domain component(s) of corresponding putative BGC.")
+    print("3. xxx.attention_single_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within single protein.")
+    print("4. xxx.attention_multi_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within multiple proteins.")
+    print("5. xxx.attention_pep_level.html ('xxx' is BGC id), which plots inter-protein attention flow(s).")
     print()
 
     l_BGC_id=[]
@@ -555,7 +555,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
     
     print("The following html-based interactive images will be generated for the putative BGC-containing contig(s) and saved to {:s}:".format(opath_prediction_result_contig_detail))
     print("1. xxx.confidence_score.html ('xxx' is contig id), which plots ORF-level confidence scores given by f-BGM.")
-    print("2. xxx.putative_BGC.html ('xxx' is contig id), which plots putative BGCs' genomic span predicted by individual algorithm(s).")
+    print("2. xxx.putative_BGC.html ('xxx' is contig id), which plots putative BGCs' genomic span predicted by f-BGM.")
     print()
     for contig in grouped_df_putative_BGC.groups:
         
