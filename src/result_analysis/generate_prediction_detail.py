@@ -124,7 +124,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
         dropout_rate=dict_genome_mining_model_config["dropout_rate"]
     ).to(device)
 
-    print("The following files will be generated for the putative BGC(s) and saved to {:s}:".format(opath_prediction_result_BGC_detail))
+    print("The following files will be generated for the f-BGM-putative BGC(s) and saved to {:s}:".format(opath_prediction_result_BGC_detail))
     print("1. xxx.dna.fasta ('xxx' is BGC id), which records DNA sequence of corresponding putative BGC.")
     print("2. xxx.pfam.json ('xxx' is BGC id), which records Pfam domain component(s) of corresponding putative BGC.")
     print("3. xxx.attention_single_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within single protein.")
