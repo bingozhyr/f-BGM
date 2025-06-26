@@ -4,7 +4,7 @@
 [![Preprint link](https://img.shields.io/badge/bioRxiv-xxx-green.svg)](xxx)
 [![PyTorch version](https://img.shields.io/badge/PyTorch-2.2.0-red.svg)]()
 
-## Briefings
+## Briefing
 Benifit by recent data accumulation of fungal biosynthetic gene clusters (BGC), here we proposed a deep learning framework specifically for the fungal genome mining problem, termed as f-BGM. By designing a novel self-attention-based pretrained model acquiring the knowledge of inter-Domain Locally Co-occurrent relationship in Fungal genome (f-DLC), f-BGM outperforms existing baselines in both (1) BGC detection and (2) core enzyme identification tasks. In addition, attention weight-based analyses demonstrates that f-BGM is of decent interpretability on deciphering single-domain and -protein importance as well as inter-domain partnership.
 
 ## Model architecture
