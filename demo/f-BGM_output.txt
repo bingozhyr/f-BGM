@@ -15,7 +15,7 @@ Finished, 0s taken. Identify 1 sequence record(s) in total.
 
 Checking the genome annotation file...
 
-Finished, 2s taken.
+Finished, 1s taken.
 
 
 Extracting peptide sequence(s) based on the fasta and gff files...
@@ -25,22 +25,22 @@ Finished, 2s taken. Extract 2097 peptide sequence(s) belonging to 1 contig(s) in
 
 Generating Pfam domain annotation for peptide sequence(s) by HMMER...
 
-Finished, 72s taken.
+Finished, 66s taken.
 
 
 Selecting device for model running...
 
-Finished. Selected device type: cpu.
+Finished. Selected device type: gpu, index: 0.
 
 
 Generating ESM representation...
 
-Finished, 608s taken.
+Finished, 74s taken.
 
 
 Running f-BGM...
 
-Finished, 66s taken.
+Finished, 38s taken.
 
 
 Performing BGC prediction...
@@ -51,15 +51,15 @@ Finished, 1s taken. Identify 4 BGC(s) in total. The BGC prediction result is sav
 
 Deciphering and visualizing the putative BGC(s) and related contig(s) ...
 
-The following files will be generated for the putative BGC(s) and saved to /root/demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/:
-1. xxx.dna.fasta ('xxx' is BGC id), which records DNA sequence(s) of corresponding BGC(s).
-2. xxx.pfam.json ('xxx' is BGC id), which records Pfam domain component(s) of corresponding BGC(s).
-3. xxx.attention_single_pep_pfam_level.html ('xxx' is BGC id), which plots Pfam-Pfam attention weight(s) within single peptide.
-4. xxx.attention_multi_pep_pfam_level.html ('xxx' is BGC id), which plots global Pfam-Pfam attention weight(s).
-5. xxx.attention_pep_level.html ('xxx' is BGC id), which plots global peptide-peptide attention weight(s).
+The following files will be generated for the f-BGM-putative BGC(s) and saved to /root/demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/:
+1. xxx.dna.fasta ('xxx' is BGC id), which records DNA sequence of corresponding putative BGC.
+2. xxx.pfam.json ('xxx' is BGC id), which records Pfam domain component(s) of corresponding putative BGC.
+3. xxx.attention_single_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within single protein.
+4. xxx.attention_multi_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within multiple proteins.
+5. xxx.attention_pep_level.html ('xxx' is BGC id), which plots inter-protein attention flow(s).
 
-The following html-based interactive images will be generated for the putative BGC-related contig(s) and saved to /root/demo/fbgm_working_path/prediction_result/1750899275/contig_detail/:
-1. xxx.confidence_score.html ('xxx' is contig id), which plots the confidence score distrubution of corresponding contig given by individual algorithm(s).
-2. xxx.putative_BGC.html ('xxx' is contig id), which plots putative BGC region(s) of corresponding contig predicted by individual algorithm(s).
+The following html-based interactive images will be generated for the putative BGC-containing contig(s) and saved to /root/demo/fbgm_working_path/prediction_result/1750899275/contig_detail/:
+1. xxx.confidence_score.html ('xxx' is contig id), which plots ORF-level confidence scores given by f-BGM.
+2. xxx.putative_BGC.html ('xxx' is contig id), which plots putative BGCs' genomic span predicted by f-BGM.
 
 Finished, 1s taken.
