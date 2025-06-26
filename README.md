@@ -16,8 +16,25 @@ f-DLC receives ≤26 consecutive ORFs as inputs. First, f-DLC transforms the ORF
 ![f-BGM](img/f-BGM.png)
 **a** The BGC detection model receives genomic contexts as input and outputs ORF-level probabilistic scores representing BGC membership. The entire process consists of three sequential steps: (1) self-attention-based short-range information interaction (by SRM), (2) long-short-term memory (LSTM)-based long-range information passing (by LRM) and (3) probabilistic score generation (by OM). **b** Detailed illustration of the SRM. SRM integrates two pretrained models respectively capturing (1) inter-domain locally co-occurrent relationship in fungal genome (f-DLC) and (2) amino acid patterns within fungal protein sequences (f-ESM2). The input genomic contexts are first fragmented into multiple sizes of genomic windows and fed into f-DLC to enable domain-level information interaction and generate window-wise ORF-level embeddings, meanwhile the ORF-encoded protein sequences are passed into f-ESM2. The f-DLC-output embeddings and broadcasted f-ESM2-output embeddings are further concatenated and fed into an additional transformer encoder for protein-level information interaction (protein-level TFE). **c** The core enzyme identification model receives BGCs as input and outputs ORF-level probabilistic scores representing the presence or absence of target core enzymes. **d** The main part of core enzyme identification model mimics the SRM architecture in (**b**) but without genomic window-based fragmentation on the input BGCs due to their determined borders.
 
-## Toolkit installation
+## Toolkit installation and initialization
 This toolkit was developed for Linux systems due to dependencies on some UNIX-specific bioinformatics packages (e.g., PyHMMER).
+### Repository cloning
+(1) Clone this repository to local machine: 
+```
+~/user/path# git clone https://github.com/bingozhyr/f-BGM.git
+```
+(2) Navigate into the project directory:
+```
+~/user/path# cd f-BGM
+~/user/path/f-BGM# ls
+LICENSE  README.md  demo  docs  environment.yml  f-bgm.py  img  src
+```
+### Download model parameters and external files
+This repository only contains the Python source code. The (1) trained model parameters and (2) external files for Pfam domain identification are seperately deposited in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1) as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB), respectively. The users should (1) download and move them into the project directory and (2) unzip them. The complete project is as follow:
+```
+~/user/path/f-BGM# ls
+LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  model  src
+```
 ### Environment configuration
 We strongly recommend the users to configure f-BGM runtime environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for dependency conflict solvement and multiple environment management. The environment was test on Ubuntu 20.04.6 LTS with all dependencies installed via conda and pip following the documentation.
 #### Option 1: automatic configuration (recommended):
@@ -49,23 +66,6 @@ We strongly recommend the users to configure f-BGM runtime environment using Con
 (2) Install the dependencies deposited in PyPI:
 ```
 (f-BGM) ~/user/path# pip install fair-esm==2.0.0 pygustus==0.8.3
-```
-### Repository cloning
-(1) Clone this repository to local machine: 
-```
-(f-BGM) ~/user/path# git clone https://github.com/bingozhyr/f-BGM.git
-```
-(2) Navigate into the project directory:
-```
-(f-BGM) ~/user/path# cd f-BGM
-(f-BGM) ~/user/path/f-BGM# ls
-LICENSE  README.md  demo  docs  environment.yml  f-bgm.py  img  src
-```
-### Download model parameters and external files
-This repository only contains the Python source code. The (1) trained model parameters and (2) external files for Pfam domain identification are seperately deposited in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1) as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB), respectively. The users should (1) download and move them into the project directory and (2) unzip them. The complete project is as follow:
-```
-(f-BGM) ~/user/path/f-BGM# ls
-LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  model  src
 ```
 ## Perform fungal genome mining using f-BGM
 ### Basic usage
