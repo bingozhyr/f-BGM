@@ -38,7 +38,7 @@ LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  m
 ### Environment configuration
 We strongly recommend the users to configure f-BGM runtime environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for dependency conflict solvement and multiple environment management. The environment was test on Ubuntu 20.04.6 LTS with all dependencies installed via conda and pip following the documentation.
 #### Option 1: automatic configuration (recommended):
-(1) Directly create a configured virtual environment namd 'f-BGM' through the pipeline pre-defined in 'environment.yml':
+(1) Directly create a configured virtual environment named 'f-BGM' through the pipeline pre-defined in 'environment.yml':
 ```
 (base) ~/user/path# conda env create -f ~/user/path/f-BGM/environment.yml
 ```
