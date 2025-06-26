@@ -58,7 +58,7 @@ Directly create a virtual environment namd 'f-BGM' according to the pre-defined 
 ```
 (f-BGM) ~/user/path# conda install python==3.10.13 pandas==1.3.5 biopython==1.82 pyhmmer==0.8.1 augustus==3.5.0 plotly==5.18.0 bokeh==3.3.4 pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 pandas==1.3.5 biopython==1.82 -c conda-forge -c bioconda -c pytorch -c nvidia
 ```
-(2) Install the packages deposited in Pypi:
+(2) Install the packages deposited in PyPI:
 ```
 (f-BGM) ~/user/path# pip install fair-esm==2.0.0 pygustus==0.8.3
 ```
