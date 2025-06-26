@@ -94,7 +94,7 @@ See the help messages to understand the usages of other parameters:
 ```
 ## Deciphering genome mining results of f-BGM
 ### Basic information of putative BGCs
-For each genome mining task, a file ['putative_BGC.csv'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC.csv) will be first generated, where the basic information of f-BGM-putative BGCs including genomic locus, member ORF number, putative core enzymes, member protein domains and confidence score are recorded.
+For each genome mining task, a file ['putative_BGC.csv'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC.csv) will be first generated, where the basic information of f-BGM-putative BGCs including genomic locus, member ORF number, putative core enzymes, Pfam domain components and confidence score are recorded.
 ### Detailed information of putative BGC-containing contigs
 For each putative BGC-containing contig, 2 interactive html images will be generated:
 
