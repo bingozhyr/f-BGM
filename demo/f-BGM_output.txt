@@ -54,7 +54,7 @@ Deciphering and visualizing the putative BGC(s) and related contig(s) ...
 The following files will be generated for the f-BGM-putative BGC(s) and saved to /root/demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/:
 1. xxx.dna.fasta ('xxx' is BGC id), which records DNA sequence of corresponding putative BGC.
 2. xxx.pfam.json ('xxx' is BGC id), which records Pfam domain component(s) of corresponding putative BGC.
-3. xxx.attention_single_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within single protein.
+3. xxx.attention_intra_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within single protein.
 4. xxx.attention_multi_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within multiple proteins.
 5. xxx.attention_pep_level.html ('xxx' is BGC id), which plots inter-protein attention flow(s).
 
