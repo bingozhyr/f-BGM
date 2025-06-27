@@ -30,7 +30,7 @@ In the current stage, this toolkit is only available on Linux systems due to som
 LICENSE  README.md  demo  docs  environment.yml  f-bgm.py  img  src
 ```
 ### Download model parameters and external files
-This repository only contains the Python source code. The (1) trained model parameters and (2) external files for Pfam domain identification are seperately deposited in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1) as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB), respectively. The users should (1) download and move them into the project directory and (2) unzip them. The complete project is as follow:
+This repository only contains the Python source code. The (1) trained model parameters and (2) external files for Pfam domain identification are seperately deposited in [figshare](https://doi.org/10.6084/m9.figshare.29396423.v1) as 'model.zip' (1.05GB) and 'external_file.zip' (786.02MB), respectively. The users should (1) download and move them into the project directory and (2) unzip them. The complete project directory is as follow:
 ```
 ~/user/path/f-BGM# ls
 LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  model  src
