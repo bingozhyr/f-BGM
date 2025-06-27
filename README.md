@@ -36,7 +36,7 @@ This repository only contains the Python source code. The (1) trained model para
 LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  model  src
 ```
 ### Environment configuration
-We strongly recommend the users to configure f-BGM runtime environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for dependency conflict solvement and multiple environment management. The environment was test on Ubuntu 20.04.6 LTS with all dependencies installed via conda and pip following the documentation.
+We strongly recommend the users to configure f-BGM runtime environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for dependency conflict solvement and multiple environment management. The environment was tested on Ubuntu 20.04.6 LTS with all dependencies installed via conda and pip following the documentation.
 #### Option 1: automatic configuration (recommended):
 (1) Directly create a configured virtual environment named 'f-BGM' through the pipeline pre-defined in 'environment.yml':
 ```
