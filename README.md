@@ -37,35 +37,15 @@ LICENSE  README.md  demo  docs  environment.yml  external_file  f-bgm.py  img  m
 ```
 ### Environment configuration
 We strongly recommend the users to configure f-BGM runtime environment using Conda (available at [here](https://www.anaconda.com/download/)), which is professional for dependency conflict solvement and multiple environment management. The environment was tested on Ubuntu 20.04.6 LTS with all dependencies installed via conda and pip following the documentation.
-#### Option 1: automatic configuration (recommended):
-(1) Directly create a configured virtual environment named 'f-BGM' through the pipeline pre-defined in 'environment.yml':
+
+(1) Create f-BGM runtime environment following the pipeline pre-defined in 'environment.yml':
 ```
 (base) ~/user/path# conda env create -f ~/user/path/f-BGM/environment.yml
 ```
-(2) Switch to the f-BGM runtime environment:
+(2) Switch to the configured environment:
 ```
 (base) ~/user/path# conda activate f-BGM
 (f-BGM) ~/user/path#
-```
-#### Option 2: step-by-step manual configuration:
-#### 1. Preparation
-(1) Create a empty virtual environment specifically for f-BGM execution, here the environment is named as 'f-BGM' for demonstration:
-```
-(base) ~/user/path# conda create -n f-BGM
-```
-(2) Switch to the empty f-BGM environment:
-```
-(base) ~/user/path# conda activate f-BGM
-(f-BGM) ~/user/path#
-```
-#### 2. Formal configuration of f-BGM runtime environment (installation of Python and dependencies)
-(1) Install Python and dependencies deposited in Conda channels:
-```
-(f-BGM) ~/user/path# conda install git==2.49.0 python==3.10.13 pandas==1.3.5 biopython==1.82 pyhmmer==0.8.1 augustus==3.5.0 plotly==5.18.0 bokeh==3.3.4 pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 pandas==1.3.5 biopython==1.82 -c conda-forge -c bioconda -c pytorch -c nvidia
-```
-(2) Install the dependencies deposited in PyPI:
-```
-(f-BGM) ~/user/path# pip install fair-esm==2.0.0 pygustus==0.8.3
 ```
 ## Perform fungal genome mining using f-BGM
 ### Basic usage
