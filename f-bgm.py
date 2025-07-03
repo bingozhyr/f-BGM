@@ -81,7 +81,7 @@ import json
 import time
 from src.util import calculate_file_md5,check_environment,get_available_device
 from src.input_processing import generate_genome_annotation,precheck,extract_pep_seq,generate_pfam_annotation
-from src.model.fbgm import generate_esm_representation,genome_mining,bgc_prediction
+from src.model.fbgm import generate_fesm2_representation,genome_mining,bgc_prediction
 from src.result_analysis import generate_prediction_detail
 
 
@@ -336,7 +336,7 @@ try:
     step_code=110
     if (step_code,1) not in dict_log["set_step"]:
         dict_log["set_step"].add((step_code,0))
-        generate_esm_representation.genESMRepresentation(
+        generate_fesm2_representation.genfESM2Representation(
             file_contig_list=dict_log["path_seq"]+"contig_list.npy",
             path_seq=dict_log["path_seq"],
             opath_esm_json=dict_log["path_tmp_result_fbgm"],
