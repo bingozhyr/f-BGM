@@ -31,7 +31,7 @@ def getSubSeqList(seq,max_sub_seq_length,expected_sub_seq_coverage,sub_seq_cover
             return l_sub_seq
     
     
-def genESMRepresentation(file_contig_list,path_seq,opath_esm_json,path_model,device):
+def genfESM2Representation(file_contig_list,path_seq,opath_esm_json,path_model,device):
 
     print("Generating f-ESM2 representation embedding(s)...")
     print()
