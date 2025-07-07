@@ -36,7 +36,7 @@ def performBGCPrediction(file_contig_list,file_pfam_json,path_esm_json,path_geno
     dict_pep2pred_score={}
     l_all_pred_score=[]
     for contig in l_contig:
-        file_esm_json=path_esm_json+contig+".ESM.json"
+        file_esm_json=path_esm_json+contig+".esm.json"
         with open(file_esm_json,'r') as f:
             dict_esm_=json.load(f)
         dict_esm.update(dict_esm_)

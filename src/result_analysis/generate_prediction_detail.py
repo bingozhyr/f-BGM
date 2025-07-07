@@ -54,7 +54,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
     dict_esm={}
     l_contig=np.load(file_contig_list,allow_pickle=True)
     for contig in l_contig:
-        file_esm_json=path_esm_json+contig+".ESM.json"
+        file_esm_json=path_esm_json+contig+".esm.json"
         with open(file_esm_json,'r') as f:
             dict_esm_=json.load(f)
         dict_esm.update(dict_esm_)
