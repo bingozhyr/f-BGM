@@ -70,7 +70,7 @@ def genfESM2Representation(file_contig_list,path_seq,opath_esm_json,path_model,d
                 odict[pep_id]=th.concat(
                     [esm_model([sub_seq]) for sub_seq in getSubSeqList(pep_seq,max_sub_seq_length,expected_sub_seq_coverage,sub_seq_coverage_decay_step,min_sub_seq_coverage,expected_max_n_sub_seq)]
                 ).mean(axis=0).cpu().detach_().numpy().tolist()
-        with open(opath_esm_json+contig+".ESM.json",'w') as f:
+        with open(opath_esm_json+contig+".esm.json",'w') as f:
             json.dump(odict,f)
     
     e_time=time.time()
