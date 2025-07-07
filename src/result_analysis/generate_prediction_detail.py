@@ -134,6 +134,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
 
     l_BGC_id=[]
     dict_BGC_id2l_pep_id={}
+    dict_BGC_id2putative_core_enzyme={}
     for contig in grouped_df_putative_BGC.groups:
         
         tdf_putative_BGC=grouped_df_putative_BGC.get_group(contig).reset_index(drop=True).copy()
@@ -151,9 +152,11 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             tmp_dict_pep2pfam_description={pep_id:dict_pep2pfam_description[pep_id] for pep_id in tl_pep_id}
             with open(opath_prediction_result_BGC_detail+BGC_id+".pfam.json",'w') as f:
                 json.dump(tmp_dict_pep2pfam_description,f)
+            tmp_dict_putative_core_enzyme=eval(tdf_putative_BGC["putative_core_enzyme"][i])
                 
             l_BGC_id.append(BGC_id)
             dict_BGC_id2l_pep_id[BGC_id]=tl_pep_id
+            dict_BGC_id2putative_core_enzyme[BGC_id]=tmp_dict_putative_core_enzyme
 
     a_intra_pep_pfam_level,a_multi_pep_pfam_level,a_pep_level=[],[],[]
     for no_submodel in range(n_submodel):
@@ -256,6 +259,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
     grouped_df_attn_weight_pep_level=df_attn_weight_pep_level.groupby("BGC_id")
 
     for BGC_id in l_BGC_id:
+        tmp_dict_putative_core_enzyme=dict_BGC_id2putative_core_enzyme[BGC_id]
         tdf_attn_weight_intra_pep_pfam_level=grouped_df_attn_weight_intra_pep_pfam_level.get_group(BGC_id).reset_index(drop=True).copy()
         tdf_attn_weight_multi_pep_pfam_level=grouped_df_attn_weight_multi_pep_pfam_level.get_group(BGC_id).reset_index(drop=True).copy()
         tdf_attn_weight_pep_level=grouped_df_attn_weight_pep_level.get_group(BGC_id).reset_index(drop=True).copy()
@@ -297,6 +301,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
         for block_pfam_id,pep_id in zip(tl_block_pfam_id,tl_pep_id):
             tl_node_category+=len(block_pfam_id)*[pep_id]
         l_node_category=2*tl_node_category
+        l_node_name_=[node_category+" ("+node_name+')' for node_category,node_name in zip(l_node_category,l_node_name)]
 
         index_level1=np.array(list(range(len(tl_pfam_id))))
         index_level2=index_level1+len(tl_pfam_id)
@@ -334,7 +339,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
                     node={
                         "pad":0,
                         "thickness":thickness,
-                        "label":l_node_name,
+                        "label":l_node_name_,
                         'x':x,
                         'y':y,
                         "color":[hex_to_rgba(dict_pep2color[node_category],a=0.8) for node_category in l_node_category]
@@ -392,6 +397,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
         for block_pfam_id,pep_id in zip(tl_block_pfam_id,tl_pep_id):
             tl_node_category+=len(block_pfam_id)*[pep_id]
         l_node_category=2*tl_node_category
+        l_node_name_=[node_category+" ("+node_name+')' for node_category,node_name in zip(l_node_category,l_node_name)]
 
         index_level1=np.array(list(range(len(tl_pfam_id))))
         index_level2=index_level1+len(tl_pfam_id)
@@ -429,7 +435,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
                     node={
                         "pad":0,
                         "thickness":thickness,
-                        "label":l_node_name,
+                        "label":l_node_name_,
                         'x':x,
                         'y':y,
                         "color":[hex_to_rgba(dict_pep2color[node_category],a=0.8) for node_category in l_node_category]
@@ -471,8 +477,9 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
 
         l_color=(l_base_color*int(np.ceil(n_pep/len(l_base_color))))[:n_pep]
         dict_pep2color=dict(zip(tl_pep_id,l_color))
-        
-        l_node_name=2*list(tl_pep_id)
+
+        l_node_name=2*tl_pep_id
+        l_node_name_=2*[pep_id+" ("+','.join(tmp_dict_putative_core_enzyme[pep_id])+')' if pep_id in tmp_dict_putative_core_enzyme else pep_id for pep_id in tl_pep_id]
         index_level1=np.array(list(range(len(tl_pep_id))))
         index_level2=index_level1+len(tl_pep_id)
         df_matrix_attn_weight_pep_level.index=index_level1
@@ -509,7 +516,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
                     node={
                         "pad":0,
                         "thickness":thickness,
-                        "label":l_node_name,
+                        "label":l_node_name_,
                         'x':x,
                         'y':y,
                         "color":[hex_to_rgba(dict_pep2color[node_name],a=0.8) for node_name in l_node_name]
@@ -535,7 +542,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
         n_pfam=len(tl_pfam_id)
         if n_pfam==0:
             continue
-        str_html_pfam_description=pep_id+":<br>"
+        str_html_pfam_description=''
         for i,pfam_id in enumerate(tl_pfam_id):
             pfam_description=dict_pfam_description[pfam_id]
             if i!=n_pfam-1:
@@ -621,6 +628,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
         algorithm_name="f-BGM"
         tdf_putative_BGC=grouped_df_putative_BGC.get_group(contig).reset_index(drop=True).copy()
         for i in range(len(tdf_putative_BGC)):
+            BGC_id=tdf_putative_BGC["BGC_id"][i]
             tl_pep_id=eval(tdf_putative_BGC["pep_id"][i])
             tl_pep_idx=[dict_pep2idx[pep_id] for pep_id in tl_pep_id]
             min_pep_idx,max_pep_idx=np.min(tl_pep_idx),np.max(tl_pep_idx)
@@ -628,9 +636,12 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             n_selected_pep=len(tl_selected_pep_id)
             l_color=(l_base_color*int(np.ceil(n_selected_pep/len(l_base_color))))[:n_selected_pep]
             dict_pep2color=dict(zip(tl_selected_pep_id,l_color))
-            str_html_pfam_description=""
+            tmp_dict_putative_core_enzyme=dict_BGC_id2putative_core_enzyme[BGC_id]
+            str_html_pfam_description="<div><i>"+BGC_id+"</i></div>"
             for pep_id in tl_selected_pep_id:
-                str_html_pfam_description+=('<div style="color:'+dict_pep2color[pep_id]+';">'+dict_pep2html_pfam_description[pep_id]+"</div>")
+                str_html_pfam_description+=(
+                    '<div style="color:'+dict_pep2color[pep_id]+';">'+(pep_id+" ("+','.join(tmp_dict_putative_core_enzyme[pep_id])+')' if pep_id in tmp_dict_putative_core_enzyme else pep_id)+":<br>"+dict_pep2html_pfam_description[pep_id]+"</div>"
+                )
             source=ColumnDataSource(data={
                 'x':[min_pep_idx-0.5,max_pep_idx+0.5],
                 'y':[dict_algorithm2y[algorithm_name]]*2,

@@ -15,7 +15,7 @@ Finished, 0s taken. Identify 1 sequence record(s) in total.
 
 Checking the genome annotation file...
 
-Finished, 1s taken.
+Finished, 2s taken.
 
 
 Extracting peptide sequence(s) based on the fasta and gff files...
@@ -25,7 +25,7 @@ Finished, 2s taken. Extract 2097 peptide sequence(s) belonging to 1 contig(s) in
 
 Generating Pfam domain annotation for peptide sequence(s) by HMMER...
 
-Finished, 66s taken.
+Finished, 714s taken.
 
 
 Selecting device for model running...
@@ -35,30 +35,30 @@ Finished. Selected device type: gpu, index: 0.
 
 Generating f-ESM2 representation embedding(s)...
 
-Finished, 74s taken.
+Finished, 81s taken.
 
 
 Running f-BGM...
 
-Finished, 38s taken.
+Finished, 72s taken.
 
 
 Performing BGC prediction...
 
-Finished, 1s taken. Identify 4 BGC(s) in total. The BGC prediction result is saved as /root/demo/fbgm_working_path/prediction_result/1750899275/putative_BGC.csv.
+Finished, 5s taken. Identify 4 BGC(s) in total. The BGC prediction result is saved as /root/demo/fbgm_working_path/prediction_result/1751864434/putative_BGC.csv.
 
 
 
 Deciphering and visualizing the putative BGC(s) and related contig(s) ...
 
-The following files will be generated for the f-BGM-putative BGC(s) and saved to /root/demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/:
+The following files will be generated for the f-BGM-putative BGC(s) and saved to /root/demo/fbgm_working_path/prediction_result/1751864434/putative_BGC_detail/:
 1. xxx.dna.fasta ('xxx' is BGC id), which records DNA sequence of corresponding putative BGC.
 2. xxx.pfam.json ('xxx' is BGC id), which records Pfam domain component(s) of corresponding putative BGC.
 3. xxx.attention_intra_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within single protein.
 4. xxx.attention_multi_pep_pfam_level.html ('xxx' is BGC id), which plots inter-domain attention flow(s) within multiple proteins.
 5. xxx.attention_pep_level.html ('xxx' is BGC id), which plots inter-protein attention flow(s).
 
-The following html-based interactive images will be generated for the putative BGC-containing contig(s) and saved to /root/demo/fbgm_working_path/prediction_result/1750899275/contig_detail/:
+The following html-based interactive images will be generated for the putative BGC-containing contig(s) and saved to /root/demo/fbgm_working_path/prediction_result/1751864434/contig_detail/:
 1. xxx.confidence_score.html ('xxx' is contig id), which plots ORF-level confidence scores given by f-BGM.
 2. xxx.putative_BGC.html ('xxx' is contig id), which plots putative BGCs' genomic span predicted by f-BGM.
 
