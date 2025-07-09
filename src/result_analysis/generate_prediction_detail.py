@@ -575,7 +575,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
 
         
         output_file(opath_prediction_result_contig_detail+contig+".confidence_score.html")
-        p=figure(title=contig,x_axis_label="Peptide",y_axis_label="Confidence score",width=1280,height=480,tools=["xpan","box_zoom","xwheel_zoom","reset"])
+        p=figure(title=contig,x_axis_label="Peptide",y_axis_label="Confidence score",sizing_mode="stretch_both",tools=["xpan","box_zoom","xwheel_zoom","reset"])
         algorithm_name="f-BGM"
         source=ColumnDataSource(data={
             'x':l_pep_idx,
@@ -624,7 +624,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
 
 
         output_file(opath_prediction_result_contig_detail+contig+".putative_BGC.html")
-        p=figure(title=contig,x_axis_label="Peptide",y_axis_label="Algorithm",width=1280,height=480,tools=["xpan","box_zoom","xwheel_zoom","reset"])
+        p=figure(title=contig,x_axis_label="Peptide",y_axis_label="Algorithm",sizing_mode="stretch_both",tools=["xpan","box_zoom","xwheel_zoom","reset"])
         algorithm_name="f-BGM"
         tdf_putative_BGC=grouped_df_putative_BGC.get_group(contig).reset_index(drop=True).copy()
         for i in range(len(tdf_putative_BGC)):
