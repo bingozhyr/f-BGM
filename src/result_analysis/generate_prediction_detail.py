@@ -361,9 +361,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             height=None,
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
-            margin=dict(l=0, r=0, t=0, b=0),
-            xaxis=dict(visible=False, showgrid=False, showticklabels=False),
-            yaxis=dict(visible=False, showgrid=False, showticklabels=False)
+            margin=dict(l=0, r=0, t=0, b=0)
         )
         config={'displayModeBar':False}
         fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_intra_pep_pfam_level.html",config=config)
@@ -467,9 +465,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             height=None,
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
-            margin=dict(l=0, r=0, t=0, b=0),
-            xaxis=dict(visible=False, showgrid=False, showticklabels=False),
-            yaxis=dict(visible=False, showgrid=False, showticklabels=False)
+            margin=dict(l=0, r=0, t=0, b=0)
         )
         config={'displayModeBar':False}
         fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_multi_pep_pfam_level.html",config=config)
@@ -558,9 +554,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             height=None,
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
-            margin=dict(l=0, r=0, t=0, b=0),
-            xaxis=dict(visible=False, showgrid=False, showticklabels=False),
-            yaxis=dict(visible=False, showgrid=False, showticklabels=False)
+            margin=dict(l=0, r=0, t=0, b=0)
         )
         config={'displayModeBar':False}
         fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_pep_level.html",config=config)
