@@ -10,6 +10,7 @@ from ..model.fbgm import model
 import json
 import plotly.graph_objects as go
 import plotly as px
+from plotly.offline import plot
 import time
 l_base_color=px.colors.qualitative.Plotly
 n_char_line_breaking_threshold=128
@@ -314,7 +315,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
 
         thickness=20
         y_unit=1/n_pfam
-        x=n_pfam*[0.25]+n_pfam*[0.75]
+        x=n_pfam*[0.05]+n_pfam*[0.95]
         y=[]
         for i in range(len(l_node_name)):
             if i%n_pfam==0:
@@ -353,6 +354,16 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
                     arrangement="fixed"
                 )
             ]
+        )
+        fig.update_layout(
+            autosize=True,
+            width=None,
+            height=None,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            margin=dict(l=0, r=0, t=0, b=0),
+            xaxis=dict(visible=False, showgrid=False, showticklabels=False),
+            yaxis=dict(visible=False, showgrid=False, showticklabels=False)
         )
         config={'displayModeBar':False}
         fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_intra_pep_pfam_level.html",config=config)
@@ -410,7 +421,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
 
         thickness=20
         y_unit=1/n_pfam
-        x=n_pfam*[0.25]+n_pfam*[0.75]
+        x=n_pfam*[0.05]+n_pfam*[0.95]
         y=[]
         for i in range(len(l_node_name)):
             if i%n_pfam==0:
@@ -449,6 +460,16 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
                     arrangement="fixed"
                 )
             ]
+        )
+        fig.update_layout(
+            autosize=True,
+            width=None,
+            height=None,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            margin=dict(l=0, r=0, t=0, b=0),
+            xaxis=dict(visible=False, showgrid=False, showticklabels=False),
+            yaxis=dict(visible=False, showgrid=False, showticklabels=False)
         )
         config={'displayModeBar':False}
         fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_multi_pep_pfam_level.html",config=config)
@@ -491,7 +512,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
 
         thickness=20
         y_unit=1/n_pep
-        x=n_pep*[0.25]+n_pep*[0.75]
+        x=n_pep*[0.05]+n_pep*[0.95]
         y=[]
         for i in range(len(l_node_name)):
             if i%n_pep==0:
@@ -530,6 +551,16 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
                     arrangement="fixed"
                 )
             ]
+        )
+        fig.update_layout(
+            autosize=True,
+            width=None,
+            height=None,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            margin=dict(l=0, r=0, t=0, b=0),
+            xaxis=dict(visible=False, showgrid=False, showticklabels=False),
+            yaxis=dict(visible=False, showgrid=False, showticklabels=False)
         )
         config={'displayModeBar':False}
         fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_pep_level.html",config=config)
