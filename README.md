@@ -75,7 +75,7 @@ See the help messages to understand the usages of other parameters:
 ```
 ## Deciphering genome mining results of f-BGM
 ### Basic information of putative BGCs
-For each genome mining task, a file ['putative_BGC.csv'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC.csv) will be first generated, where the basic information of f-BGM-putative BGCs including genomic locus, member ORF number, putative core enzymes, Pfam domain components and confidence score are recorded.
+For each genome mining task, a file ['putative_BGC.csv'](demo/fbgm_working_path/prediction_result/1751864434/putative_BGC.csv) will be first generated, where the basic information of f-BGM-putative BGCs including genomic locus, member ORF number, putative core enzymes, Pfam domain components and confidence score are recorded.
 ### Detailed information of putative BGC-containing contigs
 For each putative BGC-containing contig, 2 interactive html images will be generated:
 
@@ -85,12 +85,12 @@ For each putative BGC-containing contig, 2 interactive html images will be gener
 ### Detailed information of putative BGCs
 For each putative BGC, 5 files will be generated:
 
-(1) ['putative_BGC_id.dna.fasta'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.dna.fasta), which records corresponding DNA sequences in fasta format.
+(1) ['putative_BGC_id.dna.fasta'](demo/fbgm_working_path/prediction_result/1751864434/putative_BGC_detail/BGC_8.dna.fasta), which records corresponding DNA sequences in fasta format.
 
-(2) ['putative_BGC_id.pfam.json'](demo/fbgm_working_path/prediction_result/1750899275/putative_BGC_detail/BGC_2.pfam.json), which records Pfam domain components of each member protein in json format.
+(2) ['putative_BGC_id.pfam.json'](demo/fbgm_working_path/prediction_result/1751864434/putative_BGC_detail/BGC_8.pfam.json), which records Pfam domain components of each member protein in json format.
 
-(3) ['putative_BGC_id.attention_intra_pep_pfam_level.html'](https://bingozhyr.github.io/f-BGM/BGC_2.attention_intra_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within single protein, as revealed by single-protein domain-level TFE of f-DLC.
+(3) ['putative_BGC_id.attention_intra_pep_pfam_level.html'](https://bingozhyr.github.io/f-BGM/BGC_8.attention_intra_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within single protein, as revealed by single-protein domain-level TFE of f-DLC.
 
-(4) ['putative_BGC_id.attention_multi_pep_pfam_level.html'](https://bingozhyr.github.io/f-BGM/BGC_2.attention_multi_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within multi-proteins, as revealed by multi-protein domain-level TFE of f-DLC.
+(4) ['putative_BGC_id.attention_multi_pep_pfam_level.html'](https://bingozhyr.github.io/f-BGM/BGC_8.attention_multi_pep_pfam_level.html), which interactively illustrates inter-domain attention flows within multi-proteins, as revealed by multi-protein domain-level TFE of f-DLC.
 
-(5) ['putative_BGC_id.attention_pep_level.html'](https://bingozhyr.github.io/f-BGM/BGC_2.attention_pep_level.html), which interactively illustrates inter-protein (inter-ORF) attention flows, as revealed by protein-level TFE of f-BGM SRM.
+(5) ['putative_BGC_id.attention_pep_level.html'](https://bingozhyr.github.io/f-BGM/BGC_8.attention_pep_level.html), which interactively illustrates inter-protein (inter-ORF) attention flows, as revealed by protein-level TFE of f-BGM SRM.
