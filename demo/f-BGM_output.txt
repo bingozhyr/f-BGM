@@ -1,4 +1,4 @@
-python ~/f-BGM/f-bgm.py -s demo.fa -a demo.gff3 -p fbgm_working_path --pred_score_top_ratio 0.03
+python ~/f-BGM/f-bgm.py -s demo.fa -a demo.gff3 -p fbgm_working_path --pred_score_top_ratio 0.01
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
                  __         ___  ___ __  __ 
