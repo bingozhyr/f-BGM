@@ -364,7 +364,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             margin=dict(l=0, r=0, t=0, b=0)
         )
         config={'displayModeBar':False}
-        fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_intra_pep_pfam_level.html",config=config)
+        fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_intra_pep_pfam_level.html",full_html=False,include_plotlyjs="cdn",config=config)
         # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
         
@@ -468,7 +468,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             margin=dict(l=0, r=0, t=0, b=0)
         )
         config={'displayModeBar':False}
-        fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_multi_pep_pfam_level.html",config=config)
+        fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_multi_pep_pfam_level.html",full_html=False,include_plotlyjs="cdn",config=config)
         # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 
@@ -557,7 +557,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             margin=dict(l=0, r=0, t=0, b=0)
         )
         config={'displayModeBar':False}
-        fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_pep_level.html",config=config)
+        fig.write_html(opath_prediction_result_BGC_detail+BGC_id+".attention_pep_level.html",full_html=False,include_plotlyjs="cdn",config=config)
         # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
     dict_pep2html_pfam_description={}
