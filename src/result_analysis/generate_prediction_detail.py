@@ -275,7 +275,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             pep_index,pfam_start,pfam_end=tdf_pfam_intra_pep_pfam_level["pep_index"][i],tdf_pfam_intra_pep_pfam_level["pfam_start1"][i],tdf_pfam_intra_pep_pfam_level["pfam_end1"][i]
             pep_id,pfam_id=tdf_pfam_intra_pep_pfam_level["pep_id"][i],tdf_pfam_intra_pep_pfam_level["pfam_id1"][i]
             tl_pfam_id.append(pfam_id)
-            dict_pfam_info2index[(pep_index,pfam_start,pfam_end)]=i
+            dict_pfam_info2index[(pep_index,pfam_start,pfam_end,pfam_id)]=i
             if pep_id not in dict_pep_id2block_pfam_id:
                 tl_pep_id.append(pep_id)
                 dict_pep_id2block_pfam_id[pep_id]=[]
@@ -288,11 +288,13 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             pep_index=tdf_attn_weight_intra_pep_pfam_level["pep_index"][i]
             pfam_start1,pfam_end1=tdf_attn_weight_intra_pep_pfam_level["pfam_start1"][i],tdf_attn_weight_intra_pep_pfam_level["pfam_end1"][i]
             pfam_start2,pfam_end2=tdf_attn_weight_intra_pep_pfam_level["pfam_start2"][i],tdf_attn_weight_intra_pep_pfam_level["pfam_end2"][i]
+            pfam_id1=tdf_attn_weight_intra_pep_pfam_level["pfam_id1"][i]
+            pfam_id2=tdf_attn_weight_intra_pep_pfam_level["pfam_id2"][i]
             attn_weight=tdf_attn_weight_intra_pep_pfam_level["attn_weight"][i]
-            pfam_index1,pfam_index2=dict_pfam_info2index[(pep_index,pfam_start1,pfam_end1)],dict_pfam_info2index[(pep_index,pfam_start2,pfam_end2)]
+            pfam_index1,pfam_index2=dict_pfam_info2index[(pep_index,pfam_start1,pfam_end1,pfam_id1)],dict_pfam_info2index[(pep_index,pfam_start2,pfam_end2,pfam_id2)]
             matrix_attn_weight[pfam_index1,pfam_index2]=attn_weight
         df_matrix_attn_weight_intra_pep_pfam_level=pd.DataFrame(matrix_attn_weight,index=tl_pfam_id,columns=tl_pfam_id)
-        df_matrix_attn_weight_intra_pep_pfam_level.divide(df_matrix_attn_weight_intra_pep_pfam_level.sum(axis=1),axis=0)
+        df_matrix_attn_weight_intra_pep_pfam_level=df_matrix_attn_weight_intra_pep_pfam_level.divide(df_matrix_attn_weight_intra_pep_pfam_level.sum(axis=1),axis=0)
 
         l_color=(l_base_color*int(np.ceil(n_pep/len(l_base_color))))[:n_pep]
         dict_pep2color=dict(zip(tl_pep_id,l_color))
@@ -378,7 +380,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             pep_index,pfam_start,pfam_end=tdf_pfam_multi_pep_pfam_level["pep_index1"][i],tdf_pfam_multi_pep_pfam_level["pfam_start1"][i],tdf_pfam_multi_pep_pfam_level["pfam_end1"][i]
             pep_id,pfam_id=tdf_pfam_multi_pep_pfam_level["pep_id1"][i],tdf_pfam_multi_pep_pfam_level["pfam_id1"][i]
             tl_pfam_id.append(pfam_id)
-            dict_pfam_info2index[(pep_index,pfam_start,pfam_end)]=i
+            dict_pfam_info2index[(pep_index,pfam_start,pfam_end,pfam_id)]=i
             if pep_id not in dict_pep_id2block_pfam_id:
                 tl_pep_id.append(pep_id)
                 dict_pep_id2block_pfam_id[pep_id]=[]
@@ -392,11 +394,13 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             pep_index2=tdf_attn_weight_multi_pep_pfam_level["pep_index2"][i]
             pfam_start1,pfam_end1=tdf_attn_weight_multi_pep_pfam_level["pfam_start1"][i],tdf_attn_weight_multi_pep_pfam_level["pfam_end1"][i]
             pfam_start2,pfam_end2=tdf_attn_weight_multi_pep_pfam_level["pfam_start2"][i],tdf_attn_weight_multi_pep_pfam_level["pfam_end2"][i]
+            pfam_id1=tdf_attn_weight_multi_pep_pfam_level["pfam_id1"][i]
+            pfam_id2=tdf_attn_weight_multi_pep_pfam_level["pfam_id2"][i]
             attn_weight=tdf_attn_weight_multi_pep_pfam_level["attn_weight"][i]
-            pfam_index1,pfam_index2=dict_pfam_info2index[(pep_index1,pfam_start1,pfam_end1)],dict_pfam_info2index[(pep_index2,pfam_start2,pfam_end2)]
+            pfam_index1,pfam_index2=dict_pfam_info2index[(pep_index1,pfam_start1,pfam_end1,pfam_id1)],dict_pfam_info2index[(pep_index2,pfam_start2,pfam_end2,pfam_id2)]
             matrix_attn_weight[pfam_index1,pfam_index2]=attn_weight
         df_matrix_attn_weight_multi_pep_pfam_level=pd.DataFrame(matrix_attn_weight,index=tl_pfam_id,columns=tl_pfam_id)
-        df_matrix_attn_weight_multi_pep_pfam_level.divide(df_matrix_attn_weight_multi_pep_pfam_level.sum(axis=1),axis=0)
+        df_matrix_attn_weight_multi_pep_pfam_level=df_matrix_attn_weight_multi_pep_pfam_level.divide(df_matrix_attn_weight_multi_pep_pfam_level.sum(axis=1),axis=0)
 
         l_color=(l_base_color*int(np.ceil(n_pep/len(l_base_color))))[:n_pep]
         dict_pep2color=dict(zip(tl_pep_id,l_color))
@@ -490,7 +494,7 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
             pep_index1_,pep_index2_=dict_pep_info2index[pep_index1],dict_pep_info2index[pep_index2]
             matrix_attn_weight[pep_index1_,pep_index2_]=attn_weight
         df_matrix_attn_weight_pep_level=pd.DataFrame(matrix_attn_weight,index=tl_pep_id,columns=tl_pep_id)
-        df_matrix_attn_weight_pep_level.divide(df_matrix_attn_weight_pep_level.sum(axis=1),axis=0)
+        df_matrix_attn_weight_pep_level=df_matrix_attn_weight_pep_level.divide(df_matrix_attn_weight_pep_level.sum(axis=1),axis=0)
 
         l_color=(l_base_color*int(np.ceil(n_pep/len(l_base_color))))[:n_pep]
         dict_pep2color=dict(zip(tl_pep_id,l_color))
