@@ -1,7 +1,7 @@
 # f-BGM enables fungi-specific genome mining in high accuracy and interpretability
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![External data link](https://img.shields.io/badge/figshare-10.6084/m9.figshare.29396423.v1-yellow.svg)](https://doi.org/10.6084/m9.figshare.29396423.v1)
-[![Preprint link](https://img.shields.io/badge/bioRxiv-10.1101/2025.07.08.662937-green.svg)](https://doi.org/10.1101/2025.07.08.662937)
+[![Preprint link](https://img.shields.io/badge/bioRxiv-10.1101/2025.07.08.662937-green.svg)](https://www.biorxiv.org/content/10.1101/2025.07.08.662937v1)
 [![PyTorch version](https://img.shields.io/badge/PyTorch-2.2.0-red.svg)]()
 
 ## Briefing
