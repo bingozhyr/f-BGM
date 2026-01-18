@@ -169,6 +169,10 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
         genome_mining_model_.load_state_dict(th.load(file_genome_mining_model,map_location=device))
         genome_mining_model_.eval()
 
+        genome_mining_model.prefix_processed_predefined_appendix=genome_mining_model_.prefix_processed_predefined_appendix
+        genome_mining_model.null_processed_predefined_appendix=genome_mining_model_.null_processed_predefined_appendix
+        genome_mining_model.prefix_processed_extended_appendix=genome_mining_model_.prefix_processed_extended_appendix
+        genome_mining_model.null_processed_extended_appendix=genome_mining_model_.null_processed_extended_appendix
         genome_mining_model.corpus_pfam_id=genome_mining_model_.corpus_pfam_id
         genome_mining_model.linear_predefined_appendix_processing=genome_mining_model_.linear_predefined_appendix_processing
         genome_mining_model.linear_extended_appendix_processing=genome_mining_model_.linear_extended_appendix_processing
@@ -718,3 +722,4 @@ def genPredictionDetail(file_contig_list,file_contig_fasta,file_pfam_json,path_e
     e_time=time.time()
     print("Finished, {:d}s taken.".format(int(e_time-s_time)))
     print()
+
