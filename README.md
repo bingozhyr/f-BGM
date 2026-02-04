@@ -1,10 +1,10 @@
-### News! The f-BGM webserver has been available at [here](http://8.130.167.242/)!
-
 # f-BGM enables fungi-specific genome mining in high accuracy and interpretability
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![External data link](https://img.shields.io/badge/figshare-10.6084/m9.figshare.29396423.v1-yellow.svg)](https://doi.org/10.6084/m9.figshare.29396423.v1)
 [![Preprint link](https://img.shields.io/badge/bioRxiv-10.1101/2025.07.08.662937-green.svg)](https://www.biorxiv.org/content/10.1101/2025.07.08.662937v1)
 [![PyTorch version](https://img.shields.io/badge/PyTorch-2.2.0-red.svg)]()
+
+### News! The f-BGM webserver has been available at [here](http://8.130.167.242/)!
 
 ## Briefing
 Benifit by recent data accumulation of fungal biosynthetic gene clusters (BGC), here we proposed a deep learning framework specifically for the fungal genome mining problem, termed as f-BGM. By leveraging a novel self-attention-based pretrained model acquiring the knowledge of inter-Domain Locally Co-occurrent relationship in Fungal genome (f-DLC), f-BGM outperforms existing baselines in both (1) BGC detection and (2) core enzyme identification tasks. In addition, attention weight-based analyses demonstrate that f-BGM is of decent interpretability on deciphering single-domain and -protein importance as well as inter-domain partnership.
