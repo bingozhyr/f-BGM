@@ -1,4 +1,4 @@
-## News! The f-BGM webserver has been available at [here](http://8.130.167.242/)
+### News! The f-BGM webserver has been available at [here](http://8.130.167.242/)!
 
 # f-BGM enables fungi-specific genome mining in high accuracy and interpretability
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
